@@ -15,6 +15,11 @@ spec:
       containers:
       - name: ehrbasedb
         image: postgres
+        command:
+        - /bin/chown
+        - -R
+        - "1000"
+        - /var/lib/postgresql/data
         ports:
         - containerPort: 5432
         volumeMounts:
