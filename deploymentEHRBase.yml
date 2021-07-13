@@ -18,7 +18,7 @@ spec:
         ports:
         - containerPort: 8080
         env:
-          - name: SPRING_DATASOURCE_UR
+          - name: SPRING_DATASOURCE_URL
             value: jdbc:postgresql://ehrbasedb:5432/ehrbase
           - name: SPRING_DATASOURCE_USERNAME
             value: ehrbase
