@@ -16,8 +16,9 @@ spec:
       - name: ehrbasedb
         image: postgres
         command:
-          - "chmod"
-          - "777"
+          - "chown"
+          - "-R"
+          - "1001:1001"
           - "/var/lib/postgresql/data"
         ports:
         - containerPort: 5432
