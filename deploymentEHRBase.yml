@@ -17,6 +17,13 @@ spec:
         image: ehrbase/ehrbase:0.16.5
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: data
+      volumes:
+        - name: data
+          hostPath:
+            path: /root/EHRBase/.pgdata
         env:
           - name: SPRING_DATASOURCE_UR
             value: jdbc:postgresql://ehrbasedb:5432/ehrbase
