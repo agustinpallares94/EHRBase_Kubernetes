@@ -20,6 +20,9 @@ spec:
           - "-R"
           - "1001:1001"
           - "/var/lib/postgresql/data"
+          - "chmod"
+          - "777"
+          - "/var/lib/postgresql/data"
         ports:
         - containerPort: 5432
         volumeMounts:
