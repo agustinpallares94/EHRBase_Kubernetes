@@ -14,7 +14,7 @@ spec:
     spec:  
       containers:
       - name: ehrbasedb
-        image: postgres
+        image: ehrbase/ehrbase-postgres:latest
         ports:
         - containerPort: 5432
         command: ["sh", "-c", "chown -R 200:200 /var/lib/postgresql/data"]
