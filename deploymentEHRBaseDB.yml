@@ -17,6 +17,13 @@ spec:
         image: postgres
         ports:
         - containerPort: 5432
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: data
+      volumes:
+        - name: data
+          hostPath:
+            path: /root/EHRBase/.pgdata
         env:
           - name: POSTGRES_USER
             value: ehrbase
