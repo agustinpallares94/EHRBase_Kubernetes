@@ -15,14 +15,8 @@ spec:
       containers:
       - name: ehrbasedb
         image: postgres
-        command:
-          - "chown"
-          - "-R"
-          - "1001:1001"
-          - "/var/lib/postgresql/data"
-          - "chmod"
-          - "777"
-          - "/var/lib/postgresql/data"
+        securityContext:
+          fsGroup: 1234
         ports:
         - containerPort: 5432
         volumeMounts:
