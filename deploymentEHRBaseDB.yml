@@ -21,9 +21,9 @@ spec:
         - mountPath: /var/lib/postgresql/data
           name: data
       volumes:
-        - name: data
-          hostPath:
-            - path: /root/EHRBase/.pgdata
+      - name: data
+        hostPath:
+          path: /root/EHRBase/.pgdata
         env:
           - name: POSTGRES_USER
             value: ehrbase
