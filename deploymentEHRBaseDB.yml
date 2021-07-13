@@ -23,7 +23,7 @@ spec:
       volumes:
         - name: data
           hostPath:
-            path: /root/EHRBase/.pgdata
+            - path: /root/EHRBase/.pgdata
         env:
           - name: POSTGRES_USER
             value: ehrbase
