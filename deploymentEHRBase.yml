@@ -26,3 +26,21 @@ spec:
             value: ehrbase
           - name: SERVER_AQLCONFIG_USEJSQUERY
             value: "false"
+      - name: ehrbasedb
+        image: ehrbase/ehrbase-postgres:latest
+        volumeMounts:
+        - name: ehrbase-storage
+          mountPath: /var/lib/postgresql/data
+        ports:
+        - containerPort: 5432
+        env:
+          - name: POSTGRES_USER
+            value: ehrbase
+          - name: POSTGRES_PASSWORD
+            value: ehrbase
+          - name: POSTGRES_db
+            value: ehrbase
+      volumes:
+      - name: ehrbase-storage
+
+      
