@@ -17,7 +17,7 @@ spec:
         image: ehrbase/ehrbase-postgres:latest
         volumeMounts:
         - name: ehrbase-storage
-          mountPath: /var/lib/postgresql/data
+          mountPath: /data
         ports:
         - containerPort: 5432
         env:
