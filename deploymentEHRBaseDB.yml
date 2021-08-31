@@ -15,6 +15,12 @@ spec:
       containers:
       - name: ehrbasedb
         image: ehrbase/ehrbase-postgres:latest
+        volumeMounts:
+        - name: ehrbase-storage
+          mountPath: /data
+      volumes:
+      - name: ehrbase-storage
+        emptyDir: {}
         ports:
         - containerPort: 5432
         env:
