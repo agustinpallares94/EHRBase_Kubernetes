@@ -29,5 +29,6 @@ spec:
             value: ehrbase
       volumes:
       - name: ehrbase-storage
+        emptyDir: {}
 
 
