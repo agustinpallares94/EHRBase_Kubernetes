@@ -1,0 +1,28 @@
+kind: "DeploymentConfig"
+apiVersion: "v1"
+metadata:
+  name: "ehrbasedb"
+spec:
+  template: 
+    metadata:
+      labels:
+        name: "ehrbasedb"
+    spec:
+      containers:
+        - name: "ehrbasedb"
+          image: "ehrbase/ehrbase-postgres:latest"
+          ports:
+            - containerPort: 5432
+  replicas: 1
+  env:
+    - name: POSTGRES_USER
+      value: ehrbase
+    - name: POSTGRES_PASSWORD
+      value: ehrbase
+    - name: POSTGRES_db
+      value: ehrbase
+  strategy: 
+    type: "Rolling"
+  paused: false 
+  revisionHistoryLimit: 2 
+  minReadySeconds: 0 
