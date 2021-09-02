@@ -1,37 +1,30 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: ehrbasedb-deployment
+  name: ehrbasedb
 spec:
-  selector:
-    matchLabels:
-      app: ehrbasedb
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: ehrbasedb
-    spec:  
-      containers:
-      - name: pgdata
-        image: agustinpallares/ehrbasedb
-        volumeMounts:
-        - name: ehrbase-storage
-          mountPath: /var/lib/postgresql/data
-        ports:
-        - containerPort: 5432
-        env:
-          - name: POSTGRES_USER
-            value: postgres
-          - name: POSTGRES_PASSWORD
-            value: postgres
-          - name: EHRBASE_USER
-            value: ehrbase
-          - name: EHRBASE_PASSWORD
-            value: ehrbase
-      volumes:
-      - name: pgdata
-
-
-
+    containers:
+    - name: ehrbasedb
+      image: ehrbase/ehrbase-postgres:latest
+      securityConext:
+        privileged: true
+      volumeMounts:
+      - mountPath: /data
+        name: hostpath-privileged
+      ports:
+      - containerPort: 5432
+      env:
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: postgres
+        - name: EHRBASE_USER
+          value: ehrbase
+        - name: EHRBASE_PASSWORD
+          value: ehrbase
+    securityContext: {}
+    volumes:
+      - name: hostpath-privileged
+        persistentVolumeClaim:
+          claimName: task-pvc-volume
 
