@@ -1,26 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ehrbasedb-deployment
-data: 
-  POSTGRES_DB: ehrbase
-  POSTGRES_USER: postgres
-  POSTGRES_PASSWORD: postgres
+  name: postgres
 spec:
   selector:
     matchLabels:
-      app: ehrbasedb
+      app: postgres
   replicas: 1
   template:
     metadata:
       labels:
-        app: ehrbasedb
+        app: postgres
     spec:  
       containers:
-      - name: pgdata
+      - name: postgres
         image: ehrbase/ehrbase-postgres:latest
         ports:
-        - containerPort: 5432
+         - containerPort: 5432
+        envFrom:
+          - configMapRef:
+              name: postgres-config
+        volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: postgredb
         env:
           - name: POSTGRES_USER
             value: postgres
@@ -30,3 +32,7 @@ spec:
             value: ehrbase
           - name: EHRBASE_PASSWORD
             value: ehrbase
+      volumes:
+        - name: postgredb
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim
