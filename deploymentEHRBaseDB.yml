@@ -13,8 +13,8 @@ spec:
         app: ehrbasedb
     spec:  
       containers:
-      - name: ehrbasedb
-        image: ehrbase/ehrbase-postgres:latest
+      - name: pgdata
+        image: agustinpallares/ehrbasedb
         volumeMounts:
         - name: ehrbase-storage
           mountPath: /var/lib/postgresql/data
@@ -22,13 +22,16 @@ spec:
         - containerPort: 5432
         env:
           - name: POSTGRES_USER
-            value: ehrbase
+            value: postgres
           - name: POSTGRES_PASSWORD
+            value: postgres
+          - name: EHRBASE_USER
             value: ehrbase
-          - name: POSTGRES_db
+          - name: EHRBASE_PASSWORD
             value: ehrbase
       volumes:
-      - name: ehrbase-storage
-        emptyDir: {}
+      - name: pgdata
+
+
 
 
