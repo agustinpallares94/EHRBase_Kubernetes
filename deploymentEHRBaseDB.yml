@@ -26,5 +26,5 @@ spec:
     volumes:
       - name: hostpath-privileged
         persistentVolumeClaim:
-          claimName: task-pvc-volume
+          claimName: /data
 
